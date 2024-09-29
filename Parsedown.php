@@ -1511,7 +1511,7 @@ class Parsedown
         }
 
         if (strpos($Excerpt['context'], 'http') !== false
-            && preg_match('/\bhttps?+:[\/]{2}[^\s<]+\b\/*+/ui', $Excerpt['context'], $matches, PREG_OFFSET_CAPTURE)
+            && preg_match('/\bhttps?+:[\/]{2}[^\s<]+\b\/*+/ui', $Excerpt['context'], $matches, \PREG_OFFSET_CAPTURE)
         ) {
             $url = $matches[0][0];
 
@@ -1796,7 +1796,7 @@ class Parsedown
     {
         $newElements = [];
 
-        while (preg_match($regexp, $text, $matches, PREG_OFFSET_CAPTURE))
+        while (preg_match($regexp, $text, $matches, \PREG_OFFSET_CAPTURE))
         {
             $offset = $matches[0][1];
             $before = substr($text, 0, $offset);
@@ -1887,7 +1887,7 @@ class Parsedown
 
     protected static function escape($text, $allowQuotes = false)
     {
-        return htmlspecialchars($text, $allowQuotes ? ENT_NOQUOTES : ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars($text, $allowQuotes ? \ENT_NOQUOTES : \ENT_QUOTES, 'UTF-8');
     }
 
     protected static function striAtStart($string, $needle)
