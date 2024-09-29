@@ -21,6 +21,11 @@ class Parsedown
 
     # ~
 
+    /**
+     * @param string $text
+     *
+     * @return string
+     */
     public function text($text)
     {
         $Elements = $this->textElements($text);
@@ -32,6 +37,11 @@ class Parsedown
         return trim($markup, "\n");
     }
 
+    /**
+     * @param string $text
+     *
+     * @return list<array>
+     */
     protected function textElements($text)
     {
         # make sure no definitions are set
@@ -139,6 +149,9 @@ class Parsedown
      */
     protected $strictMode = false;
 
+    /**
+     * @var list<string>
+     */
     protected $safeLinksWhitelist = [
         'http://',
         'https://',
@@ -160,6 +173,9 @@ class Parsedown
     # Lines
     #
 
+    /**
+     * @var list<list<string>>
+     */
     protected $BlockTypes = [
         '#' => ['Header'],
         '*' => ['Rule', 'List'],
@@ -188,6 +204,9 @@ class Parsedown
 
     # ~
 
+    /**
+     * @var list<string>
+     */
     protected $unmarkedBlockTypes = [
         'Code',
     ];
@@ -201,6 +220,11 @@ class Parsedown
         return $this->elements($this->linesElements($lines));
     }
 
+    /**
+     * @param list<string> $lines
+     *
+     * @return list<array>
+     */
     protected function linesElements(array $lines)
     {
         $Elements = [];
@@ -350,6 +374,9 @@ class Parsedown
         return $Elements;
     }
 
+    /**
+     * @return array
+     */
     protected function extractElement(array $Component)
     {
         if (!isset($Component['element']))
@@ -367,11 +394,21 @@ class Parsedown
         return $Component['element'];
     }
 
+    /**
+     * @param string $Type
+     *
+     * @return bool
+     */
     protected function isBlockContinuable($Type)
     {
         return method_exists($this, 'block' . $Type . 'Continue');
     }
 
+    /**
+     * @param string $Type
+     *
+     * @return bool
+     */
     protected function isBlockCompletable($Type)
     {
         return method_exists($this, 'block' . $Type . 'Complete');
@@ -1781,6 +1818,9 @@ class Parsedown
         return $markup;
     }
 
+    /**
+     * @return string
+     */
     protected function elements(array $Elements)
     {
         $markup = '';
