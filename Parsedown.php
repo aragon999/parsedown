@@ -168,7 +168,7 @@ class Parsedown
 
         foreach ($lines as $line)
         {
-            if (chop($line) === '')
+            if (rtrim($line) === '')
             {
                 if (isset($CurrentBlock))
                 {
@@ -504,7 +504,7 @@ class Parsedown
         }
 
         if (($len = strspn($Line['text'], $Block['char'])) >= $Block['openerLength']
-            and chop(substr($Line['text'], $len), ' ') === ''
+            and rtrim(substr($Line['text'], $len), ' ') === ''
         ) {
             $Block['element']['element']['text'] = substr($Block['element']['element']['text'], 1);
 
@@ -779,7 +779,7 @@ class Parsedown
     {
         $marker = $Line['text'][0];
 
-        if (substr_count($Line['text'], $marker) >= 3 and chop($Line['text'], " $marker") === '')
+        if (substr_count($Line['text'], $marker) >= 3 and rtrim($Line['text'], " {$marker}") === '')
         {
             return [
                 'element' => [
@@ -799,7 +799,7 @@ class Parsedown
             return;
         }
 
-        if ($Line['indent'] < 4 and chop(chop($Line['text'], ' '), $Line['text'][0]) === '')
+        if ($Line['indent'] < 4 and rtrim(rtrim($Line['text'], ' '), $Line['text'][0]) === '')
         {
             $Block['element']['name'] = $Line['text'][0] === '=' ? 'h1' : 'h2';
 
@@ -890,7 +890,7 @@ class Parsedown
             return;
         }
 
-        if (chop($Line['text'], ' -:|') !== '')
+        if (rtrim($Line['text'], ' -:|') !== '')
         {
             return;
         }
