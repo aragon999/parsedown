@@ -1014,7 +1014,7 @@ class Parsedown
             $row = trim($row);
             $row = trim($row, '|');
 
-            preg_match_all('/(?:(\\\\[|])|[^|`]|`[^`]++`|`)++/', $row, $matches);
+            preg_match_all('/(?:(\\\[|])|[^|`]|`[^`]++`|`)++/', $row, $matches);
 
             $cells = array_slice($matches[0], 0, count($Block['alignments']));
 
@@ -1220,7 +1220,7 @@ class Parsedown
         ];
 
         $Inline['element']['elements'] = self::pregReplaceElements(
-            $this->breaksEnabled ? '/[ ]*+\n/' : '/(?:[ ]*+\\\\|[ ]{2,}+)\n/',
+            $this->breaksEnabled ? '/[ ]*+\n/' : '/(?:[ ]*+\\\|[ ]{2,}+)\n/',
             [
                 ['name' => 'br'],
                 ['text' => "\n"],
@@ -1933,12 +1933,12 @@ class Parsedown
 
     protected $StrongRegex = [
         '*' => '/^[*]{2}((?:\\\\\*|[^*]|[*][^*]*+[*])+?)[*]{2}(?![*])/s',
-        '_' => '/^__((?:\\\\_|[^_]|_[^_]*+_)+?)__(?!_)/us',
+        '_' => '/^__((?:\\\_|[^_]|_[^_]*+_)+?)__(?!_)/us',
     ];
 
     protected $EmRegex = [
         '*' => '/^[*]((?:\\\\\*|[^*]|[*][*][^*]+?[*][*])+?)[*](?![*])/s',
-        '_' => '/^_((?:\\\\_|[^_]|__[^_]*__)+?)_(?!_)\b/us',
+        '_' => '/^_((?:\\\_|[^_]|__[^_]*__)+?)_(?!_)\b/us',
     ];
 
     protected $regexHtmlAttribute = '[a-zA-Z_:][\w:.-]*+(?:\s*+=\s*+(?:[^"\'=<>`\s]+|"[^"]*+"|\'[^\']*+\'))?+';
