@@ -822,7 +822,7 @@ class Parsedown
         {
             $element = strtolower($matches[1]);
 
-            if (in_array($element, $this->textLevelElements))
+            if (in_array($element, $this->textLevelElements, true))
             {
                 return;
             }
@@ -1317,7 +1317,7 @@ class Parsedown
 
     protected function inlineEscapeSequence($Excerpt)
     {
-        if (isset($Excerpt['text'][1]) && in_array($Excerpt['text'][1], $this->specialCharacters))
+        if (isset($Excerpt['text'][1]) && in_array($Excerpt['text'][1], $this->specialCharacters, true))
         {
             return [
                 'element' => ['rawHtml' => $Excerpt['text'][1]],
@@ -1774,7 +1774,7 @@ class Parsedown
     {
         $Elements = $this->linesElements($lines);
 
-        if (!in_array('', $lines)
+        if (!in_array('', $lines, true)
             && isset($Elements[0]) && isset($Elements[0]['name'])
             && $Elements[0]['name'] === 'p'
         ) {
