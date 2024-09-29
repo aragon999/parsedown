@@ -29,9 +29,7 @@ class Parsedown
         $markup = $this->elements($Elements);
 
         # trim line breaks
-        $markup = trim($markup, "\n");
-
-        return $markup;
+        return trim($markup, "\n");
     }
 
     protected function textElements($text)
@@ -1481,8 +1479,6 @@ class Parsedown
                 'extent' => strlen($matches[0]),
             ];
         }
-
-        return;
     }
 
     protected function inlineStrikethrough($Excerpt)
@@ -1639,9 +1635,7 @@ class Parsedown
             $Element['element'] = $this->elementsApplyRecursiveDepthFirst($closure, $Element['element']);
         }
 
-        $Element = call_user_func($closure, $Element);
-
-        return $Element;
+        return call_user_func($closure, $Element);
     }
 
     protected function elementsApplyRecursive($closure, array $Elements)
@@ -1831,9 +1825,7 @@ class Parsedown
 
     public function parse($text)
     {
-        $markup = $this->text($text);
-
-        return $markup;
+        return $this->text($text);
     }
 
     protected function sanitiseElement(array $Element)

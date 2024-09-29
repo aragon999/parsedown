@@ -31,9 +31,7 @@ class ParsedownTest extends TestCase
      */
     protected function initParsedown()
     {
-        $Parsedown = new TestParsedown();
-
-        return $Parsedown;
+        return new TestParsedown();
     }
 
     /**
