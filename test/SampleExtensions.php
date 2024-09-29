@@ -12,7 +12,7 @@ class UnsafeExtension extends Parsedown
         // This example is one of them, unsafe behaviour is NOT needed here.
         // Only use this if you trust the input and have no idea what
         // the output HTML will look like (e.g. using an external parser).
-        $Block['element']['element']['rawHtml'] = "<p>$text</p>";
+        $Block['element']['element']['rawHtml'] = "<p>{$text}</p>";
 
         return $Block;
     }
@@ -31,7 +31,7 @@ class TrustDelegatedExtension extends Parsedown
         // Only use this if you are sure that the result being added into
         // rawHtml is safe.
         // (e.g. using an external parser with escaping capabilities).
-        $Block['element']['element']['rawHtml'] = "<p>$text</p>";
+        $Block['element']['element']['rawHtml'] = "<p>{$text}</p>";
         $Block['element']['element']['allowRawHtmlInSafeMode'] = true;
 
         return $Block;

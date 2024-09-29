@@ -202,7 +202,7 @@ class Parsedown
             if (isset($CurrentBlock['continuable']))
             {
                 $methodName = 'block' . $CurrentBlock['type'] . 'Continue';
-                $Block = $this->$methodName($Line, $CurrentBlock);
+                $Block = $this->{$methodName}($Line, $CurrentBlock);
 
                 if (isset($Block))
                 {
@@ -214,7 +214,7 @@ class Parsedown
                 if ($this->isBlockCompletable($CurrentBlock['type']))
                 {
                     $methodName = 'block' . $CurrentBlock['type'] . 'Complete';
-                    $CurrentBlock = $this->$methodName($CurrentBlock);
+                    $CurrentBlock = $this->{$methodName}($CurrentBlock);
                 }
             }
 
@@ -239,7 +239,7 @@ class Parsedown
 
             foreach ($blockTypes as $blockType)
             {
-                $Block = $this->{"block$blockType"}($Line, $CurrentBlock);
+                $Block = $this->{"block{$blockType}"}($Line, $CurrentBlock);
 
                 if (isset($Block))
                 {
@@ -295,7 +295,7 @@ class Parsedown
         if (isset($CurrentBlock['continuable']) and $this->isBlockCompletable($CurrentBlock['type']))
         {
             $methodName = 'block' . $CurrentBlock['type'] . 'Complete';
-            $CurrentBlock = $this->$methodName($CurrentBlock);
+            $CurrentBlock = $this->{$methodName}($CurrentBlock);
         }
 
         # ~
@@ -476,7 +476,7 @@ class Parsedown
              */
             $language = substr($infostring, 0, strcspn($infostring, " \t\n\f\r"));
 
-            $Element['attributes'] = ['class' => "language-$language"];
+            $Element['attributes'] = ['class' => "language-{$language}"];
         }
 
         return [
@@ -1140,7 +1140,7 @@ class Parsedown
                     continue;
                 }
 
-                $Inline = $this->{"inline$inlineType"}($Excerpt);
+                $Inline = $this->{"inline{$inlineType}"}($Excerpt);
 
                 if ( ! isset($Inline))
                 {
@@ -1257,13 +1257,13 @@ class Parsedown
             . $hostnameLabel . '(?:\.' . $hostnameLabel . ')*';
 
         if (strpos($Excerpt['text'], '>') !== false
-            and preg_match("/^<((mailto:)?$commonMarkEmail)>/i", $Excerpt['text'], $matches)
+            and preg_match("/^<((mailto:)?{$commonMarkEmail})>/i", $Excerpt['text'], $matches)
         ){
             $url = $matches[1];
 
             if ( ! isset($matches[2]))
             {
-                $url = "mailto:$url";
+                $url = "mailto:{$url}";
             }
 
             return [
