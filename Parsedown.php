@@ -210,13 +210,11 @@ class Parsedown
 
                     continue;
                 }
-                else
+
+                if ($this->isBlockCompletable($CurrentBlock['type']))
                 {
-                    if ($this->isBlockCompletable($CurrentBlock['type']))
-                    {
-                        $methodName = 'block' . $CurrentBlock['type'] . 'Complete';
-                        $CurrentBlock = $this->$methodName($CurrentBlock);
-                    }
+                    $methodName = 'block' . $CurrentBlock['type'] . 'Complete';
+                    $CurrentBlock = $this->$methodName($CurrentBlock);
                 }
             }
 
@@ -1900,10 +1898,8 @@ class Parsedown
         {
             return false;
         }
-        else
-        {
-            return strtolower(substr($string, 0, $len)) === strtolower($needle);
-        }
+
+        return strtolower(substr($string, 0, $len)) === strtolower($needle);
     }
 
     public static function instance($name = 'default')
