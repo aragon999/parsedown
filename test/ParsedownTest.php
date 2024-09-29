@@ -94,7 +94,7 @@ class ParsedownTest extends TestCase
 
     public function data()
     {
-        $data = array();
+        $data = [];
 
         foreach ($this->dirs as $dir)
         {
