@@ -92,7 +92,7 @@ class ParsedownTest extends TestCase
         $this->assertEquals($expectedSafeMarkup, $actualSafeMarkup);
     }
 
-    function data()
+    public function data()
     {
         $data = array();
 
