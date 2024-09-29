@@ -54,6 +54,11 @@ class Parsedown
     # Setters
     #
 
+    /**
+     * @param bool $breaksEnabled
+     *
+     * @return self
+     */
     public function setBreaksEnabled($breaksEnabled)
     {
         $this->breaksEnabled = $breaksEnabled;
@@ -61,8 +66,16 @@ class Parsedown
         return $this;
     }
 
-    protected $breaksEnabled;
+    /**
+     * @var bool
+     */
+    protected $breaksEnabled = false;
 
+    /**
+     * @param bool $markupEscaped
+     *
+     * @return self
+     */
     public function setMarkupEscaped($markupEscaped)
     {
         $this->markupEscaped = $markupEscaped;
@@ -70,8 +83,16 @@ class Parsedown
         return $this;
     }
 
-    protected $markupEscaped;
+    /**
+     * @var bool
+     */
+    protected $markupEscaped = false;
 
+    /**
+     * @param bool $urlsLinked
+     *
+     * @return self
+     */
     public function setUrlsLinked($urlsLinked)
     {
         $this->urlsLinked = $urlsLinked;
@@ -79,8 +100,16 @@ class Parsedown
         return $this;
     }
 
+    /**
+     * @var bool
+     */
     protected $urlsLinked = true;
 
+    /**
+     * @param bool $safeMode
+     *
+     * @return self
+     */
     public function setSafeMode($safeMode)
     {
         $this->safeMode = (bool) $safeMode;
@@ -88,8 +117,16 @@ class Parsedown
         return $this;
     }
 
-    protected $safeMode;
+    /**
+     * @var bool
+     */
+    protected $safeMode = false;
 
+    /**
+     * @param bool $strictMode
+     *
+     * @return self
+     */
     public function setStrictMode($strictMode)
     {
         $this->strictMode = (bool) $strictMode;
@@ -97,7 +134,10 @@ class Parsedown
         return $this;
     }
 
-    protected $strictMode;
+    /**
+     * @var bool
+     */
+    protected $strictMode = false;
 
     protected $safeLinksWhitelist = [
         'http://',
