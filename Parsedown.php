@@ -188,8 +188,7 @@ class Parsedown
 
                 $line = $beforeTab
                     . str_repeat(' ', $shortage)
-                    . substr($line, strlen($beforeTab) + 1)
-                ;
+                    . substr($line, strlen($beforeTab) + 1);
             }
 
             $indent = strspn($line, ' ');
@@ -568,7 +567,7 @@ class Parsedown
     {
         [$name, $pattern] = $Line['text'][0] <= '-' ? ['ul', '[*+-]'] : ['ol', '[0-9]{1,9}+[.\)]'];
 
-        if (preg_match('/^('.$pattern.'([ ]++|$))(.*+)/', $Line['text'], $matches))
+        if (preg_match('/^(' . $pattern . '([ ]++|$))(.*+)/', $Line['text'], $matches))
         {
             $contentIndent = strlen($matches[2]);
 
@@ -711,7 +710,7 @@ class Parsedown
 
         if ( ! isset($Block['interrupted']))
         {
-            $text = preg_replace('/^[ ]{0,'.$requiredIndent.'}+/', '', $Line['body']);
+            $text = preg_replace('/^[ ]{0,' . $requiredIndent . '}+/', '', $Line['body']);
 
             $Block['li']['handler']['argument'][] = $text;
 
@@ -822,7 +821,7 @@ class Parsedown
             return;
         }
 
-        if (preg_match('/^<[\/]?+(\w*)(?:[ ]*+'.$this->regexHtmlAttribute.')*+[ ]*+(\/)?>/', $Line['text'], $matches))
+        if (preg_match('/^<[\/]?+(\w*)(?:[ ]*+' . $this->regexHtmlAttribute . ')*+[ ]*+(\/)?>/', $Line['text'], $matches))
         {
             $element = strtolower($matches[1]);
 
@@ -925,7 +924,7 @@ class Parsedown
                 $alignment = 'left';
             }
 
-            if (substr($dividerCell, - 1) === ':')
+            if (substr($dividerCell, -1) === ':')
             {
                 $alignment = $alignment === 'left' ? 'center' : 'right';
             }
@@ -1082,7 +1081,7 @@ class Parsedown
             return;
         }
 
-        $Block['element']['handler']['argument'] .= "\n".$Line['text'];
+        $Block['element']['handler']['argument'] .= "\n" . $Line['text'];
 
         return $Block;
     }
@@ -1168,11 +1167,9 @@ class Parsedown
 
                 # cause the new element to 'inherit' our non nestables
 
-
                 $Inline['element']['nonNestables'] = isset($Inline['element']['nonNestables'])
                     ? array_merge($Inline['element']['nonNestables'], $nonNestables)
-                    : $nonNestables
-                ;
+                    : $nonNestables;
 
                 # the text that comes before the inline
                 $unmarkedText = substr($text, 0, $Inline['position']);
@@ -1241,7 +1238,7 @@ class Parsedown
     {
         $marker = $Excerpt['text'][0];
 
-        if (preg_match('/^(['.$marker.']++)[ ]*+(.+?)[ ]*+(?<!['.$marker.'])\1(?!'.$marker.')/s', $Excerpt['text'], $matches))
+        if (preg_match('/^([' . $marker . ']++)[ ]*+(.+?)[ ]*+(?<![' . $marker . '])\1(?!' . $marker . ')/s', $Excerpt['text'], $matches))
         {
             $text = $matches[2];
             $text = preg_replace('/[ ]*+\n/', ' ', $text);
@@ -1339,7 +1336,7 @@ class Parsedown
             return;
         }
 
-        $Excerpt['text']= substr($Excerpt['text'], 1);
+        $Excerpt['text'] = substr($Excerpt['text'], 1);
 
         $Link = $this->inlineLink($Excerpt);
 
@@ -1406,7 +1403,7 @@ class Parsedown
 
             if (isset($matches[2]))
             {
-                $Element['attributes']['title'] = substr($matches[2], 1, - 1);
+                $Element['attributes']['title'] = substr($matches[2], 1, -1);
             }
 
             $extent += strlen($matches[0]);
@@ -1561,6 +1558,7 @@ class Parsedown
     protected function unmarkedText($text)
     {
         $Inline = $this->inlineText($text);
+
         return $this->element($Inline['element']);
     }
 
@@ -1693,7 +1691,7 @@ class Parsedown
                         continue;
                     }
 
-                    $markup .= " $name=\"".self::escape($value).'"';
+                    $markup .= " {$name}=\"" . self::escape($value) . '"';
                 }
             }
         }
@@ -1849,6 +1847,7 @@ class Parsedown
         if ( ! isset($Element['name']))
         {
             unset($Element['attributes']);
+
             return $Element;
         }
 

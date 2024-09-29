@@ -18,7 +18,6 @@ class UnsafeExtension extends Parsedown
     }
 }
 
-
 class TrustDelegatedExtension extends Parsedown
 {
     protected function blockFencedCodeComplete($Block)
