@@ -569,7 +569,7 @@ class Parsedown
 
             if ($contentIndent >= 5)
             {
-                $contentIndent -= 1;
+                $contentIndent--;
                 $matches[1] = substr($matches[1], 0, -$contentIndent);
                 $matches[3] = str_repeat(' ', $contentIndent) . $matches[3];
             }
