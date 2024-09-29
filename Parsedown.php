@@ -235,7 +235,7 @@ class Parsedown
             {
                 foreach ($this->BlockTypes[$marker] as $blockType)
                 {
-                    $blockTypes []= $blockType;
+                    $blockTypes[] = $blockType;
                 }
             }
 
@@ -321,7 +321,7 @@ class Parsedown
         {
             if (isset($Component['markup']))
             {
-                $Component['element'] = array('rawHtml' => $Component['markup']);
+                $Component['element'] = ['rawHtml' => $Component['markup']];
             }
             elseif (isset($Component['hidden']))
             {
@@ -627,7 +627,7 @@ class Parsedown
                 ],
             ];
 
-            $Block['element']['elements'] []= & $Block['li'];
+            $Block['element']['elements'][] = &$Block['li'];
 
             return $Block;
         }
@@ -655,7 +655,7 @@ class Parsedown
         ) {
             if (isset($Block['interrupted']))
             {
-                $Block['li']['handler']['argument'] []= '';
+                $Block['li']['handler']['argument'][] = '';
 
                 $Block['loose'] = true;
 
@@ -677,7 +677,7 @@ class Parsedown
                 ],
             ];
 
-            $Block['element']['elements'] []= & $Block['li'];
+            $Block['element']['elements'][] = &$Block['li'];
 
             return $Block;
         }
@@ -695,7 +695,7 @@ class Parsedown
         {
             if (isset($Block['interrupted']))
             {
-                $Block['li']['handler']['argument'] []= '';
+                $Block['li']['handler']['argument'][] = '';
 
                 $Block['loose'] = true;
 
@@ -704,7 +704,7 @@ class Parsedown
 
             $text = substr($Line['body'], $requiredIndent);
 
-            $Block['li']['handler']['argument'] []= $text;
+            $Block['li']['handler']['argument'][] = $text;
 
             return $Block;
         }
@@ -713,7 +713,7 @@ class Parsedown
         {
             $text = preg_replace('/^[ ]{0,'.$requiredIndent.'}+/', '', $Line['body']);
 
-            $Block['li']['handler']['argument'] []= $text;
+            $Block['li']['handler']['argument'][] = $text;
 
             return $Block;
         }
@@ -727,7 +727,7 @@ class Parsedown
             {
                 if (end($li['handler']['argument']) !== '')
                 {
-                    $li['handler']['argument'] []= '';
+                    $li['handler']['argument'][] = '';
                 }
             }
         }
@@ -764,14 +764,14 @@ class Parsedown
 
         if ($Line['text'][0] === '>' and preg_match('/^>[ ]?+(.*+)/', $Line['text'], $matches))
         {
-            $Block['element']['handler']['argument'] []= $matches[1];
+            $Block['element']['handler']['argument'][] = $matches[1];
 
             return $Block;
         }
 
         if ( ! isset($Block['interrupted']))
         {
-            $Block['element']['handler']['argument'] []= $Line['text'];
+            $Block['element']['handler']['argument'][] = $Line['text'];
 
             return $Block;
         }
@@ -930,7 +930,7 @@ class Parsedown
                 $alignment = $alignment === 'left' ? 'center' : 'right';
             }
 
-            $alignments []= $alignment;
+            $alignments[] = $alignment;
         }
 
         # ~
@@ -971,7 +971,7 @@ class Parsedown
                 ];
             }
 
-            $HeaderElements []= $HeaderElement;
+            $HeaderElements[] = $HeaderElement;
         }
 
         # ~
@@ -985,16 +985,16 @@ class Parsedown
             ],
         ];
 
-        $Block['element']['elements'] []= [
+        $Block['element']['elements'][] = [
             'name' => 'thead',
         ];
 
-        $Block['element']['elements'] []= [
+        $Block['element']['elements'][] = [
             'name' => 'tbody',
             'elements' => [],
         ];
 
-        $Block['element']['elements'][0]['elements'] []= [
+        $Block['element']['elements'][0]['elements'][] = [
             'name' => 'tr',
             'elements' => $HeaderElements,
         ];
@@ -1042,7 +1042,7 @@ class Parsedown
                     ];
                 }
 
-                $Elements []= $Element;
+                $Elements[] = $Element;
             }
 
             $Element = [
@@ -1050,7 +1050,7 @@ class Parsedown
                 'elements' => $Elements,
             ];
 
-            $Block['element']['elements'][1]['elements'] []= $Element;
+            $Block['element']['elements'][1]['elements'][] = $Element;
 
             return $Block;
         }
