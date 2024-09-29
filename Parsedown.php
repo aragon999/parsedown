@@ -659,7 +659,7 @@ class Parsedown
 
             unset($Block['li']);
 
-            $text = isset($matches[1]) ? $matches[1] : '';
+            $text = $matches[1] ?? '';
 
             $Block['indent'] = $Line['indent'];
 
@@ -860,7 +860,7 @@ class Parsedown
 
             $Data = [
                 'url' => $matches[2],
-                'title' => isset($matches[3]) ? $matches[3] : null,
+                'title' => $matches[3] ?? null,
             ];
 
             $this->DefinitionData['Reference'][$id] = $Data;
@@ -1753,8 +1753,7 @@ class Parsedown
                 continue;
             }
 
-            $autoBreakNext = (isset($Element['autobreak'])
-                ? $Element['autobreak'] : isset($Element['name'])
+            $autoBreakNext = ($Element['autobreak'] ?? isset($Element['name'])
             );
             // (autobreak === false) covers both sides of an element
             $autoBreak = !$autoBreak ? $autoBreak : $autoBreakNext;
