@@ -1796,16 +1796,9 @@ class Parsedown
             {
                 $markup .= $this->element($Element['element']);
             }
-            else
+            elseif (isset($text))
             {
-                if (!$permitRawHtml)
-                {
-                    $markup .= self::escape($text, true);
-                }
-                else
-                {
-                    $markup .= $text;
-                }
+                $markup .= $permitRawHtml ? $text : self::escape($text, true);
             }
 
             $markup .= $hasName ? '</' . $Element['name'] . '>' : '';
